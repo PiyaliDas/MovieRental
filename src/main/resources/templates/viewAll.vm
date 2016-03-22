@@ -13,7 +13,8 @@
 </select>
 <input type="submit" name="search" value="search"/>
 </form>
-
+<br/>
+<a href="/showCart">Show Cart</a>
 <table border="1">
 <tr>
  <th>Movie Name</th>

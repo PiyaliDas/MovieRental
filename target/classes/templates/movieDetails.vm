@@ -3,35 +3,38 @@
 <html lang="en">
 
 <body>
-
+<form action="/addToCart" method="POST">
 <table border="1">
 <tr>
  <td>Movie Name</th>
- <td>$movie.name</td>
+ <td><input type="text" name="name" value="$movie.name"/></td>
 </tr>
 <tr>
  <td>Release Date</th>
- <td>$movie.releaseDate</td>
+ <td><input type="text" name="releaseDate" value="$movie.releaseDate"/></td>
 </tr>
 <tr>
  <td>Lead Actor</th>
- <td>$movie.actor</td>
+ <td><input type="text" name="actor" value="$movie.actor"/></td>
 </tr>
 
 <tr>
  <td>Lead Actress</th>
- <td>$movie.actress</td>
+ <td><input type="text" name="actress" value="$movie.actress"/></td>
 </tr>
 
 <tr>
  <td>Genres</th>
- <td>$movie.genres</td>
+ <td><input type="text" name="genres" value="$movie.genres"/></td>
 </tr>
 
 <tr>
  <td>Price</th>
- <td>$movie.price</td>
+ <td><input type="text" name="price" value="$movie.price"/></td>
 </table>
+
+<input type="submit" value="AddtoCart">
+</form>
 </body>
 
 </html>
