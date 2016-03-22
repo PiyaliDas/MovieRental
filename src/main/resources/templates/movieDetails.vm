@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+
+<table border="1">
+<tr>
+ <td>Movie Name</th>
+ <td>$movie.name</td>
+</tr>
+<tr>
+ <td>Release Date</th>
+ <td>$movie.releaseDate</td>
+</tr>
+<tr>
+ <td>Lead Actor</th>
+ <td>$movie.actor</td>
+</tr>
+
+<tr>
+ <td>Lead Actress</th>
+ <td>$movie.actress</td>
+</tr>
+
+<tr>
+ <td>Genres</th>
+ <td>$movie.genres</td>
+</tr>
+
+<tr>
+ <td>Price</th>
+ <td>$movie.price</td>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+
+<form action="/getMoviesByGenres" method="GET">
+<select name="genres">
+<option value="action">Action</option>
+<option value="drama">Drama</option>
+<option value="horror">Horror</option>
+<option value="mystrey">Mystrey</option>
+</select>
+<input type="submit" name="search" value="search"/>
+</form>
+
+<table border="1">
+<tr>
+ <th>Movie Name</th>
+ <th>Release Date</th>
+ <th>Lead Actor</th>
+ <th>Lead Actress</th>
+ <th>Genres</th>
+</tr>
+#foreach($movie in $movieList)
+  <tr>
+   <td><a href="/getMovieDetails?movie=$movie.name">$movie.name</a></td>
+   <td>$movie.releaseDate</td>
+   <td>$movie.actor</td>   
+   <td>$movie.actress</td>
+   <td>$movie.genres</td>   
+  </tr>
+#end
+</table>
+</body>
+
+</html>
