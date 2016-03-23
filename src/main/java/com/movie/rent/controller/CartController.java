@@ -27,7 +27,7 @@ public class CartController {
 		cart.addToCart(movie);
 		List<Movie> movieList = movieListService.getAllMovies();
 		//todo: logic is wrong need to consider all the movies in cart
-		movieList = movieList.stream().filter(m -> m.getName().equalsIgnoreCase(movie.getName())?false:true).collect(Collectors.toList());
+		movieList = movieList.stream().filter(m -> !(m.getName().equalsIgnoreCase(movie.getName()))).collect(Collectors.toList());
 		model.put("movieList", movieList);
 		return "viewAll";
 	}

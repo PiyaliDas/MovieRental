@@ -1,6 +1,15 @@
 package com.movie.rent.test;
 
-public class TestMovieController {
+import org.junit.Test;
 
+public class TestMovieController{
+
+	
+	@Test
+	public void testShouldReturnAllMovies(){
+		
+		
+		
+	}
 	
 }
