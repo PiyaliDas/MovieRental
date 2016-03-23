@@ -7,22 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.movie.rent.model.Movie;
-import com.movie.rent.service.MovieListService;
+import com.movie.rent.service.MovieService;
+
 
 @Controller
 public class MovieController {
 
 	@Autowired
-	private MovieListService service;
+	private MovieService service;
 	
 	@RequestMapping("/getAllMovies")
 	public String listMoviesAll(Map<String, Object> model){
 		List<Movie> movieList = service.getAllMovies();
 		model.put("movieList", movieList);
-		//populateDropbox(model);
 		return "viewAll";
 	}
 	
@@ -30,7 +29,6 @@ public class MovieController {
 	public String getMoviesByGenres(@RequestParam("genres") String genres,Map<String, Object> model){
 		List<Movie> movieList = service.getMovieByGenres(genres);
 		model.put("movieList", movieList);
-		//populateDropbox(model);
 		return "viewAll";
 	}
 	

@@ -10,7 +10,7 @@ import com.movie.rent.model.Movie;
 import com.movie.rent.repository.MovieRentRepository;
 
 @Service
-public class MovieListService {
+public class MovieService {
 
 	@Autowired
 	MovieRentRepository repository;

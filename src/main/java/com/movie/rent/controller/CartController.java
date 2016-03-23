@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.movie.rent.model.Cart;
 import com.movie.rent.model.Movie;
-import com.movie.rent.service.MovieListService;
+import com.movie.rent.service.MovieService;
 
 @Controller
 public class CartController {
@@ -20,7 +20,7 @@ public class CartController {
 	Cart cart;
 
 	@Autowired
-	MovieListService movieListService;
+	MovieService movieListService;
 	
 	@RequestMapping("/addToCart")
 	public String addMovieToCart(@ModelAttribute Movie movie, Map<String, Object> model){
