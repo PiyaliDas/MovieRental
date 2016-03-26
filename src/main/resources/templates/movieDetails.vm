@@ -6,12 +6,16 @@
 <form action="/addToCart" method="POST">
 <table border="1">
 <tr>
+ <td>Movie Id</th>
+ <td><input type="text" name="id" value="$movie.id"/></td>
+</tr>
+<tr>
  <td>Movie Name</th>
  <td><input type="text" name="name" value="$movie.name"/></td>
 </tr>
 <tr>
  <td>Release Date</th>
- <td><input type="text" name="releaseDate" value="$movie.releaseDate"/></td>
+ <td><input type="text" name="releasedate" value="$movie.releasedate"/></td>
 </tr>
 <tr>
  <td>Lead Actor</th>

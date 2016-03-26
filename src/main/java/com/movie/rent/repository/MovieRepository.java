@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.movie.rent.model.Movie;
 
 @Component
-public class MovieRentRepository {
+public class MovieRepository {
 
 	@Autowired
 	MongoTemplate template;

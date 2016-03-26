@@ -3,24 +3,35 @@
 <html lang="en">
 
 <body>
+<form action="/placeOrder" method="POST" modelAttribute="order">
 <table border="1">
 <tr>
+ <th>id</th>
  <th>Movie Name</th>
  <th>Release Date</th>
  <th>Lead Actor</th>
  <th>Lead Actress</th>
  <th>Genres</th>
+ <th>Price</th>
 </tr>
 #foreach($movie in $cart.movieList)
   <tr>
-   <td><a href="/getMovieDetails?movie=$movie.name">$movie.name</a></td>
-   <td>$movie.releaseDate</td>
-   <td>$movie.actor</td>   
-   <td>$movie.actress</td>
-   <td>$movie.genres</td>   
-  </tr>
+   <td><input type="text" name="order.movieList[$foreach.count].id" value="$movie.id"/></td>
+   <td><input type="text" name="order.movieList[$foreach.count].name" value="$movie.name"/></td>
+   <td><input type="text" name="order.movieList[$foreach.count].releasedate" value="$movie.releasedate"/></td>
+   <td><input type="text" name="order.movieList[$foreach.count].actor" value="$movie.actor"/></td>   
+   <td><input type="text" name="order.movieList[$foreach.count].actress" value="$movie.actress"/></td>
+   <td><input type="text" name="order.movieList[$foreach.count].genres" value="$movie.genres"/></td>
+   <td><input type="text" name="order.movieList[$foreach.count].price" value="$movie.price"/></td>
+ </tr>
 #end
 </table>
+</br>
+   <label>Rent Date:</label><input type="text" name="rentDate" value=""/>
+   <label>Return Date</label><input type="text" name="returnDate" value=""/>  
+ 
+<input type="submit" name="place order"/>
+</form>
 </body>
 
 </html>

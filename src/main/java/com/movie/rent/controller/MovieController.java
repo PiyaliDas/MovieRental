@@ -32,7 +32,7 @@ public class MovieController {
 		return "viewAll";
 	}
 	
-	@RequestMapping("getMovieDetails")
+	@RequestMapping("/getMovieDetails")
 	public String getMovieDetails(@RequestParam("movie") String movieName, Map<String, Object> model){
 		Movie movie = service.getMovieDetails(movieName);
 		model.put("movie", movie);

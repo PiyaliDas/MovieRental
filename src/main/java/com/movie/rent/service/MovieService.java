@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.movie.rent.model.Movie;
-import com.movie.rent.repository.MovieRentRepository;
+import com.movie.rent.repository.MovieRepository;
 
 @Service
 public class MovieService {
 
 	@Autowired
-	MovieRentRepository repository;
+	MovieRepository repository;
 	
 	public List<Movie> getAllMovies(){
 		List<Movie> movies = repository.getAllMovies();

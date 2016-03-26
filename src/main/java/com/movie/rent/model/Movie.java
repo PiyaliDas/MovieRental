@@ -11,7 +11,7 @@ public class Movie {
 	@Id
 	private String id;
 	private String name;
-	private Date releasedate;
+	private Date releaseDate;
 	private String actor;
 	private String actress;
 	private String genres;
@@ -21,15 +21,25 @@ public class Movie {
 		
 	}
 	
-	public Movie(String name, Date releasedate, String actor, String actress, String genres, double price) {
+	public Movie(String name, Date releaseDate, String actor, String actress, String genres, double price) {
 		super();
 		this.name = name;
-		this.releasedate = releasedate;
+		this.releaseDate = releaseDate;
 		this.actor = actor;
 		this.actress = actress;
 		this.genres = genres;
 		this.price = price;
 	}
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -37,10 +47,10 @@ public class Movie {
 		this.name = name;
 	}
 	public Date getReleaseDate() {
-		return releasedate;
+		return releaseDate;
 	}
 	public void setReleaseDate(Date releaseDate) {
-		this.releasedate = releaseDate;
+		this.releaseDate = releaseDate;
 	}
 	public String getActor() {
 		return actor;
@@ -67,10 +77,4 @@ public class Movie {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	/*@Override
-	public String toString() {
-		return "Movie [name=" + name + ", releaseDate=" + releasedate + ", actor=" + actor + ", actress=" + actress
-				+ ", genres=" + genres + "]";
-	}*/
-	
 }

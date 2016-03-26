@@ -32,7 +32,7 @@ public class Cart {
 	
 	public void removeFromCart(Movie movie){
 		if(movieList!=null){
-			movieList = movieList.stream().filter(m -> m.getName().equalsIgnoreCase(movie.getName())?false:true).collect(Collectors.toList());
+			movieList = movieList.stream().filter(m -> !m.getName().equalsIgnoreCase(movie.getName())).collect(Collectors.toList());
 		}
 	}
 }
