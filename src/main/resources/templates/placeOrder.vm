@@ -32,6 +32,7 @@
  
 <input type="submit" name="place order"/>
 </form>
+<a href="/logout"><p>logout</p></a>
 </body>
 
 </html>

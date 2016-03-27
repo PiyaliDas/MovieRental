@@ -15,6 +15,7 @@ public class Order {
 	Date rentDate;
 	Date returnDate;
 	double orderAmount;
+	String userId;
 	
 	public String getId() {
 		return id;
@@ -45,6 +46,12 @@ public class Order {
 	}
 	public void setOrderAmount() {
 			this.orderAmount = movieList.stream().mapToDouble(m->m.getPrice()).sum();
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

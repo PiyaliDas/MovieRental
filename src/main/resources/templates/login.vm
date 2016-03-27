@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+<form action="/login" method="POST" modelAttribute="user">
+<table border="1">
+<tr>
+ <td><input type="text" name="id" value="" hidden="true"/></td>
+</tr>
+<tr>
+ <td>User Name</td>
+ <td><input type="text" name="name" value="$user.name"/></td>
+</tr>
+<tr>
+ <td>Password</th>
+ <td><input type="text" name="password" value="$user.password"/></td>
+</tr>
+</table>
+
+<input type="submit" value="login">
+</form>
+</body>
+
+</html>

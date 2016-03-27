@@ -1,5 +1,9 @@
 package com.movie.rent.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 import java.util.List;
 
@@ -7,16 +11,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import com.movie.rent.MovieRentalApplicationTests;
 import com.movie.rent.model.Cart;
 import com.movie.rent.model.Movie;
 import com.movie.rent.model.Order;
 import com.movie.rent.service.MovieService;
 import com.movie.rent.service.OrderService;
-import static org.junit.Assert.*;
 
 
-public class OrderServiceTest extends MovieRentalApplicationTests{
+public class OrderServiceTest extends UserServiceTest{
 
 	@Autowired
 	MongoTemplate mongoTemplate;
@@ -74,6 +76,7 @@ public class OrderServiceTest extends MovieRentalApplicationTests{
 	@Test
 	public void testShouldSaveOrder(){
 		setUpMovieData();
+		//todo:getuser from db
 		List<Movie> movieListAll = movieService.getAllMovies();
 		List<Movie> movieListRemn1 = orderService.addToCart(movieListAll.get(0));
 		orderService.addToCart(movieListRemn1.get(0));
@@ -96,7 +99,6 @@ public class OrderServiceTest extends MovieRentalApplicationTests{
 		order.setMovieList(orderService.showCart().getMovieList());
 		order.setRentDate(new Date());
 		order.setReturnDate(new Date());
-		order.setOrderAmount();
 		String orderId = orderService.saveOrder(order);
 		Order orderRtrvd = orderService.getOrderById(orderId);
 		assertEquals(order.getMovieList().size(),orderRtrvd.getMovieList().size());
@@ -105,5 +107,10 @@ public class OrderServiceTest extends MovieRentalApplicationTests{
 					stream().
 					anyMatch(m1->m1.getName().equalsIgnoreCase(m.getName())));
 		});
+	}
+	
+	public void testShouldReturnOrderByUser(){
+		testShouldAuthenticateUser();
+		
 	}
 }

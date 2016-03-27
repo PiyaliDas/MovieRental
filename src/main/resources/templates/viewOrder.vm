@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<body>
+
+<a href="/showCart">Show Cart</a>
+<table border="1">
+<tr>
+ <th>Order Id</th>
+ <th>Rent Date</th>
+ <th>Return Date</th>
+ <th>Amount</th>
+ <th>Movies</th>
+</tr>
+#foreach($order in $orderList)
+  <tr>
+   <td>$order.id</td>
+   <td>$order.rentDate</td>
+   <td>$order.returnDate</td>   
+   <td>$order.amount</td>
+   <td>
+   	<table>
+   		#foreach($movie in $order.movieList)
+   		<tr>
+   			<td>$movie.name</td>
+   			<td>$movie.releaseDate</td>
+   			<td>$movie.actor</td>   
+   			<td>$movie.actress</td>
+   			<td>$movie.genres</td>   
+   		</tr>
+   		#end
+   	</table>
+   </td>   
+  </tr>
+#end
+</table>
+<a href="/getAllMovies"><p>home</p></a>
+<a href="/logout"><p>logout</p></a>
+</body>
+
+</html>
