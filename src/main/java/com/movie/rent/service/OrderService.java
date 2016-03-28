@@ -1,10 +1,9 @@
 package com.movie.rent.service;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.movie.rent.model.Cart;
 import com.movie.rent.model.Movie;
 import com.movie.rent.model.Order;
-import com.movie.rent.model.User;
 import com.movie.rent.repository.OrderRepository;
 
 @Service
@@ -26,9 +24,6 @@ public class OrderService {
 	
 	@Autowired
 	OrderRepository orderRepository;
-	
-	@Autowired
-	HttpSession session;
 	
 	public List<Movie> addToCart(Movie movie){
 		cart.addToCart(movie);
@@ -48,9 +43,13 @@ public class OrderService {
 		return cart;
 	}
 	
-	public String saveOrder(Order order){
+	public String saveOrder(String userId){
+		Order order = new Order();
+		order.setMovieList(cart.getMovieList());
+		order.setRentDate(new Date());
+		order.setReturnDate(new Date());
+		order.setUserId(userId);
 		order.setOrderAmount();
-		order.setUserId(((User) session.getAttribute("user")).getId());
 		return orderRepository.save(order).getId();
 	}
 	

@@ -10,11 +10,11 @@
 </tr>
 <tr>
  <td>User Name</td>
- <td><input type="text" name="name" value="$user.name"/></td>
+ <td><input type="text" name="name"/></td>
 </tr>
 <tr>
  <td>Password</th>
- <td><input type="text" name="password" value="$user.password"/></td>
+ <td><input type="text" name="password"/></td>
 </tr>
 </table>
 

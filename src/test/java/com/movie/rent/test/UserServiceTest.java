@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 
 import com.movie.rent.MovieRentalApplicationTests;
 import com.movie.rent.model.User;
@@ -27,10 +29,11 @@ public class UserServiceTest extends MovieRentalApplicationTests{
 		template.save(user);
 	}
 	
-	/*protected User getUserFromDB(){
-		Query
-		return template.find
-	}*/
+	protected User getUserFromDB(String name){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("name").is(name));
+		return (User) template.findOne(query, User.class);
+	}
 	
 	@Test
 	public void testShouldAuthenticateUser(){
@@ -49,7 +52,7 @@ public class UserServiceTest extends MovieRentalApplicationTests{
 		addUserToDB();
 		User user = new User();
 		user.setName("user1");
-		user.setPassword("password1");
+		user.setPassword("password2");
 		User userRtvd = userService.authenticate(user);
 		assertNull(userRtvd);
 	}
