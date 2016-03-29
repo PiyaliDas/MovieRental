@@ -1,4 +1,4 @@
-package com.movie.rent.test;
+package com.movie.rent.service.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

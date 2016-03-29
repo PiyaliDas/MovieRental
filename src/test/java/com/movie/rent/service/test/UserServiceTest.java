@@ -1,4 +1,4 @@
-package com.movie.rent.test;
+package com.movie.rent.service.test;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -16,10 +16,10 @@ import com.movie.rent.service.UserService;
 public class UserServiceTest extends MovieRentalApplicationTests{
 
 	@Autowired
-	MongoTemplate template;
+	private MongoTemplate template;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	protected void addUserToDB(){
 		User user = new User();

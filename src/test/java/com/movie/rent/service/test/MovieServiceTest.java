@@ -1,4 +1,4 @@
-package com.movie.rent.test;
+package com.movie.rent.service.test;
 
 import java.util.Date;
 import java.util.List;

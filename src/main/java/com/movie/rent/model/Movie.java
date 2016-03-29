@@ -77,4 +77,12 @@ public class Movie {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Movie){
+			return this.id.equals(((Movie) obj).getId());
+		}
+		return false;
+	}
 }
