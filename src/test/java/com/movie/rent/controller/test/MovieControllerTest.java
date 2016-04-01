@@ -1,7 +1,10 @@
 package com.movie.rent.controller.test;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +33,7 @@ public class MovieControllerTest extends MovieRentalApplicationTests{
 	
 	@Autowired
 	MovieService movieService;
+
 	
 	@Before
 	public void setUp(){
@@ -42,8 +46,6 @@ public class MovieControllerTest extends MovieRentalApplicationTests{
 		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/getAllMovies"));
 		result.andExpect(model().attribute("movieList", movieService.getAllMovies())).
 		andExpect(view().name("viewAll"));
-/*		result.andExpect(model().attribute("movieList", hasAttribute("id", 
-				contains(movieService.getAllMovies().stream().map(m->m.getId()).collect(Collectors.toList())))));*/
 	}
 	
 	@Test

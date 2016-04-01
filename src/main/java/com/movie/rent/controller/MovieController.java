@@ -19,7 +19,7 @@ public class MovieController {
 	private MovieService service;
 	
 	@RequestMapping("/getAllMovies")
-	public String listMoviesAll(Map<String, Object> model){
+	public String listMoviesAll(Map<String, Object> model,@RequestParam(required=false) String genre){
 		List<Movie> movieList = service.getAllMovies();
 		model.put("movieList", movieList);
 		return "viewAll";

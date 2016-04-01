@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="order")
@@ -14,6 +15,7 @@ public class Order {
 	List<Movie> movieList;
 	Date rentDate;
 	Date returnDate;
+	@Transient
 	double orderAmount;
 	String userId;
 	

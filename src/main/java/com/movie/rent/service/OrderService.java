@@ -45,6 +45,7 @@ public class OrderService {
 	
 	public String saveOrder(String userId){
 		Order order = new Order();
+		System.out.println(cart.hashCode());
 		order.setMovieList(cart.getMovieList());
 		order.setRentDate(new Date());
 		order.setReturnDate(new Date());
@@ -53,10 +54,6 @@ public class OrderService {
 		return orderRepository.save(order).getId();
 	}
 	
-	public Order getOrderById(String id){
-		return orderRepository.findOne(id);
-	}
-
 	public List<Order> getOrderByUser(String userId) {
 		return orderRepository.getOrdersByUser(userId);
 	}

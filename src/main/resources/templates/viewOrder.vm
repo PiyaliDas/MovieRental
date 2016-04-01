@@ -15,12 +15,12 @@
 </tr>
 #foreach($order in $orderList)
   <tr>
-   <td>$order.id</td>
+   <td><a href="/getMoviesForOrder?orderId=$order.id">$order.id</a></td>
    <td>$order.rentDate</td>
    <td>$order.returnDate</td>   
-   <td>$order.amount</td>
+   <td>$order.orderAmount</td>
    <td>
-   	<table>
+   	<table border=1>
    		#foreach($movie in $order.movieList)
    		<tr>
    			<td>$movie.name</td>
@@ -30,8 +30,8 @@
    			<td>$movie.genres</td>   
    		</tr>
    		#end
-   	</table>
-   </td>   
+   	</table>  
+   </td>
   </tr>
 #end
 </table>

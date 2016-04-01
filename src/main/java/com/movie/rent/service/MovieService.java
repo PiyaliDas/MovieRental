@@ -14,19 +14,20 @@ public class MovieService {
 
 	@Autowired
 	MovieRepository repository;
-	
-	public List<Movie> getAllMovies(){
+
+	public List<Movie> getAllMovies() {
 		List<Movie> movies = repository.getAllMovies();
 		return movies;
 	}
-	
-	public List<Movie> getMovieByGenres(final String genres){
+
+	public List<Movie> getMovieByGenres(final String genres) {
 		List<Movie> movies = repository.getAllMovies();
-		List<Movie> refinedList = movies.stream().filter((movie) -> movie.getGenres().equalsIgnoreCase(genres)).collect(Collectors.toList());
+		List<Movie> refinedList = movies.stream().filter((movie) -> movie.getGenres().equalsIgnoreCase(genres))
+				.collect(Collectors.toList());
 		return refinedList;
 	}
-	
-	public Movie getMovieDetails(String name){
+
+	public Movie getMovieDetails(String name) {
 		return repository.getMovieDetails(name);
 	}
 }
