@@ -10,12 +10,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Date;
 import java.util.List;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -48,6 +50,9 @@ public class OrderControllerTest extends MovieRentalApplicationTests{
 	
 	@Autowired
 	MongoTemplate template;
+	
+	@Autowired
+	MockHttpSession session;
 	
 	@Before
 	public void setUp(){
@@ -82,18 +87,20 @@ public class OrderControllerTest extends MovieRentalApplicationTests{
 	@Test
 	public void testShouldSaveOrder() throws Exception{
 		template.dropCollection(Order.class);
-		cart.addToCart(movieServ.getAllMovies().get(1));
+		Movie movie = movieServ.getAllMovies().get(0);
+		cart.addToCart(movie);
 		User user = template.findOne(Query.query(Criteria.where("name").is("user1")), User.class);
-		
-		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/placeOrder").sessionAttr("user", user));
+		session.setAttribute("user",user);
+		session.setAttribute("cart", cart);
+		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/placeOrder").session(session));
 		result.andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/viewOrders"));
 		Order order =template.findOne(Query.query(Criteria.where("userId").is(user.getId())), Order.class);
 		
-		assertTrue(order.getMovieList().containsAll(cart.getMovieList()));
-		
+		assertTrue(order.getMovieList().containsAll(cart.getMovieList()));		
 	
 	}
-	/*
+	
+	@Test
 	public void testShouldGetOrderByUser() throws Exception{
 		User user = template.findOne(Query.query(Criteria.where("name").is("user1")), User.class);
 		Order order = new Order();
@@ -105,7 +112,7 @@ public class OrderControllerTest extends MovieRentalApplicationTests{
 		template.dropCollection(Order.class);
 		template.save(order);
 		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/viewOrders").sessionAttr("user", user));
-		result.andExpect(model().attribute("orderList", ))
-	}*/
+		result.andExpect(model().attribute("orderList", Matchers.hasItem(Matchers.hasProperty("id", Matchers.is(order.getId())))));
+	}
 	
 }
