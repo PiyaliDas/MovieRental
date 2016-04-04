@@ -10,9 +10,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Component
 @Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS)
-public class Cart {
+public class Cart{
 
-	List<Movie> movieList = new ArrayList<>();
+	private List<Movie> movieList;
+
 
 	public List<Movie> getMovieList() {
 		return movieList;
