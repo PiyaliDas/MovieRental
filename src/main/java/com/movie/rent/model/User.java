@@ -29,4 +29,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean authenticate(User user) {
+		
+		return false;
+	}
 }

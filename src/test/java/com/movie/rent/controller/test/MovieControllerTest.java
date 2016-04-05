@@ -19,6 +19,8 @@ import com.movie.rent.MovieRentalApplicationTests;
 import com.movie.rent.controller.LoginController;
 import com.movie.rent.model.Movie;
 import com.movie.rent.service.MovieService;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.hamcrest.Matchers.equalTo;
 
 
 public class MovieControllerTest extends MovieRentalApplicationTests{
@@ -44,6 +46,8 @@ public class MovieControllerTest extends MovieRentalApplicationTests{
 	public void testShouldGetAllMovies() throws Exception{
 		
 		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/getAllMovies"));
+		
+		
 		result.andExpect(model().attribute("movieList", movieService.getAllMovies())).
 		andExpect(view().name("viewAll"));
 	}
@@ -51,7 +55,7 @@ public class MovieControllerTest extends MovieRentalApplicationTests{
 	@Test
 	public void testShouldGetDetailsForAMovie() throws Exception{
 		Movie movieForTest = movieService.getAllMovies().get(0);
-		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/getMovieDetails").param("movie", movieForTest.getName()));
+		ResultActions result = mvc.perform(MockMvcRequestBuilders.get("/getMovieDetails").param("movie", movieForTest.getId()));
 		result.andExpect(status().is2xxSuccessful()).
 		andExpect(model().attribute("movie", hasProperty("id", is(movieForTest.getId())))).
 		andExpect(model().attribute("movie", hasProperty("actor", is(movieForTest.getActor())))).

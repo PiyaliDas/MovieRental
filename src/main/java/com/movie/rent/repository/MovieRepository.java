@@ -20,9 +20,9 @@ public class MovieRepository {
 		return template.findAll(Movie.class);
 	}
 	
-	public Movie getMovieDetails(String name){
+	public Movie getMovieDetails(String movieId){
 		Query query = new Query();
-		query.addCriteria(Criteria.where("name").is(name));
+		query.addCriteria(Criteria.where("id").is(movieId));
 		return template.findOne(query, Movie.class);
 	}
 }

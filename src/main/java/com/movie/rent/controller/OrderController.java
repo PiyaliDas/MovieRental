@@ -1,12 +1,18 @@
 package com.movie.rent.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +32,16 @@ public class OrderController {
 	@Autowired
 	HttpSession session;
 	
+	@InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
+	
 	@RequestMapping(value="/addToCart", method=RequestMethod.POST)
-	public String addMovieToCart(@ModelAttribute Movie movie, Map<String, Object> model){
+	public String addMovieToCart(@ModelAttribute Movie movie, Map<String, Object> model, BindingResult bind){
+		System.err.println(movie.getReleaseDate());
 		List<Movie> movieList = orderService.addToCart(movie);
 		model.put("movieList", movieList);
 		return "viewAll";

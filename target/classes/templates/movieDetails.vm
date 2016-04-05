@@ -15,7 +15,7 @@
 </tr>
 <tr>
  <td>Release Date</th>
- <td><input type="text" name="releasedate" value="$movie.releasedate"/></td>
+ <td><input type="text" name="releaseDate" value="$movie.releaseDate"/></td>
 </tr>
 <tr>
  <td>Lead Actor</th>

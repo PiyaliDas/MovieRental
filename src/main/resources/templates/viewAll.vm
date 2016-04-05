@@ -26,7 +26,7 @@
 </tr>
 #foreach($movie in $movieList)
   <tr>
-   <td><a href="/getMovieDetails?movie=$movie.name">$movie.name</a></td>
+   <td><a href="/getMovieDetails?movie=$movie.id">$movie.name</a></td>
    <td>$movie.releaseDate</td>
    <td>$movie.actor</td>   
    <td>$movie.actress</td>

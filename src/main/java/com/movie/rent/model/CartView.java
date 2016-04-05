@@ -11,6 +11,9 @@ public class CartView {
 
 	List<Movie>  movies;
 
+	public CartView(){
+		
+	}
 	public CartView(List<Movie> movies) {
 		super();
 		this.movies = movies;

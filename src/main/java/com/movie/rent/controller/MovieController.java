@@ -33,22 +33,10 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/getMovieDetails")
-	public String getMovieDetails(@RequestParam("movie") String movieName, Map<String, Object> model){
-		Movie movie = service.getMovieDetails(movieName);
+	public String getMovieDetails(@RequestParam("movie") String movieId, Map<String, Object> model){
+		Movie movie = service.getMovieDetails(movieId);
 		model.put("movie", movie);
 		return "movieDetails";
 	}
-	
-//	private void populateDropbox(Map<String, Object> model){
-//		List<Movie> movieList = service.getAllMovies();
-//		Map<String, String> map = movieList.stream().collect(Collectors.toMap(m -> m.genres, m->m.genres));
-//		
-////		Map<String, String> map = new HashMap<>();
-////		map.put("drama", "drama");
-////		map.put("horror", "horror");
-////		map.put("action", "action");
-////		map.put("mystrey", "mystrey");
-//		model.put("dropDownMap", map);
-//	}
 	
 }

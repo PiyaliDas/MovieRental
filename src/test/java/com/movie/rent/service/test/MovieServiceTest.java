@@ -44,8 +44,12 @@ public class MovieServiceTest extends MovieRentalApplicationTests{
 	
 	@Test
 	public void testGetMovieDetails(){
-		dataSetup();
-		Movie movie = movieService.getMovieDetails("name1");
+		template.dropCollection(Movie.class);
+		Movie movie1 = new Movie("name1", new Date(), "actor1", "actress1", "drama", 100);
+		template.save(movie1, "movie");
+		Movie movie2 = new Movie("name2", new Date(), "actor2", "actress2", "mystrey", 100);
+		template.save(movie2, "movie");
+		Movie movie = movieService.getMovieDetails(movie1.getId());
 		assertEquals(movie.getName(), "name1");
 		//assertEquals(movie.getReleaseDate(),new Date());
 		assertEquals(movie.getActor(), "actor1");

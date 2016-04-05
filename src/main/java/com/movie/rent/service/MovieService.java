@@ -27,7 +27,7 @@ public class MovieService {
 		return refinedList;
 	}
 
-	public Movie getMovieDetails(String name) {
-		return repository.getMovieDetails(name);
+	public Movie getMovieDetails(String movieId) {
+		return repository.getMovieDetails(movieId);
 	}
 }
