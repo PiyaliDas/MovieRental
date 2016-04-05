@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.testng.annotations.ExpectedExceptions;
 
 import com.movie.rent.MovieRentalApplicationTests;
+import com.movie.rent.exception.UserNotAuthorizedException;
 import com.movie.rent.model.User;
 import com.movie.rent.service.UserService;
 
@@ -36,25 +38,24 @@ public class UserServiceTest extends MovieRentalApplicationTests{
 	}
 	
 	@Test
-	public void testShouldAuthenticateUser(){
+	public void testShouldAuthenticateUser() throws UserNotAuthorizedException{
 		addUserToDB();
 		User user = new User();
 		user.setName("user1");
 		user.setPassword("password1");
-		User userRtvd = userService.authenticate(user);
-		assertTrue(user.getName().equals(userRtvd.getName()));
-		assertTrue(user.getPassword().equals(userRtvd.getPassword()));
+		assertTrue(userService.authenticate(user,user.getPassword()));
 
 	}
 	
 	@Test
-	public void testShouldNotAuthenticateUser(){
+	@ExpectedExceptions(UserNotAuthorizedException.class)
+	public void testShouldNotAuthenticateUser() throws UserNotAuthorizedException{
 		addUserToDB();
 		User user = new User();
 		user.setName("user1");
 		user.setPassword("password2");
-		User userRtvd = userService.authenticate(user);
-		assertNull(userRtvd);
+		userService.authenticate(user,user.getPassword());
+
 	}
 	
 }

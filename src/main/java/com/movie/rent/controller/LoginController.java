@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.movie.rent.exception.UserNotAuthorizedException;
+import com.movie.rent.exception.UserNotFoundException;
 import com.movie.rent.model.User;
 import com.movie.rent.service.UserService;
 
@@ -27,14 +29,19 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String userLogin(@ModelAttribute("user") User user){
-		User userRtvd = userService.authenticate(user);
-		if(userRtvd!=null){
+		try{
+			User userRtvd = userService.getUser(user.getName());
+			userService.authenticate(userRtvd, userRtvd.getPassword());
 			session.setAttribute("user", userRtvd);
 			return "redirect:/getAllMovies";
 		}
-		else{
-			return "login";
+		catch(UserNotFoundException e){
+			
 		}
+		catch(UserNotAuthorizedException e){
+			
+		}
+		return "login";
 	}
 	
 	@RequestMapping("/logout")
